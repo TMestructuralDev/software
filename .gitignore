@@ -1,0 +1,13 @@
+# Ignorar el entorno virtual
+venvs/
+
+# Archivos de compilación de Python
+__pycache__/
+*.pyc
+
+# Archivos de base de datos SQLite
+db.sqlite3
+
+# Otros archivos que no quieres rastrear
+*.log
+*.env
