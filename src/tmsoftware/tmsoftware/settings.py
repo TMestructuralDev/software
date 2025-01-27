@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "almacen",
     "notas_gruas",
     "pedidos_almacen",
+    "home",
 
 ]
 
