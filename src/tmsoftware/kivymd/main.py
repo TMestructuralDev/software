@@ -3,30 +3,61 @@ from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.textfield import MDTextField
 from kivy.uix.button import Button
+import requests
 
-class MainScreen(MDScreen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.login_button = Button(text="Login", size_hint=(None, None), size=(200, 50), pos_hint={"center_x": 0.5, "center_y": 0.5})
-        self.login_button.bind(on_press=self.login)
-        self.add_widget(self.login_button)
+KV = '''
+MDScreen:
+    MDTextField:
+        id: username_input
+        hint_text: "Username"
+        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        size_hint: 0.8, None
+        height: "40dp"
+    
+    MDTextField:
+        id: password_input
+        hint_text: "Password"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint: 0.8, None
+        height: "40dp"
+        password: True
+    
+    MDRaisedButton:
+        text: "Login"
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        size_hint: 0.5, None
+        height: "50dp"
+        on_release: app.login()
+'''
 
-    def login(self, instance):
-        url = "http://127.0.0.1:8000/api/login/"  # Asegúrate de que esta sea la URL correcta para tu API
-    data = {
-        'username': 'usuario',  # Reemplaza con los datos que el usuario ingresa en los campos de texto
-        'password': 'contraseña'
-    }
-    response = requests.post(url, data=data)
+class LoginScreen(MDScreen):
+    pass
 
-    if response.status_code == 200:
-        print("Login exitoso")
-    else:
-        print("Error en el login")
-
-class MyApp(MDApp):
+class MainApp(MDApp):
     def build(self):
-        return MainScreen()
+        return Builder.load_string(KV)
 
-if __name__ == '__main__':
-    MyApp().run()
+    def login(self):
+        # Obtener datos de los campos
+        username = self.root.ids.username_input.text
+        password = self.root.ids.password_input.text
+
+        # URL de la API para login
+        url = "http://127.0.0.1:8000/api/login/"  # Cambia según sea necesario
+
+        # Crear el diccionario con los datos
+        data = {
+            'username': username,
+            'password': password
+        }
+
+        # Hacer la solicitud POST
+        response = requests.post(url, data=data)
+
+        if response.status_code == 200:
+            print("Login exitoso")
+        else:
+            print("Error en el login")
+
+if __name__ == "__main__":
+    MainApp().run()
