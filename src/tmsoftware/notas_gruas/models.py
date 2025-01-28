@@ -1,9 +1,13 @@
 from django.db import models
 from datetime import datetime, timedelta
+from django.dispatch import receiver
+from creadorPDF.utils import generar_pdf, enviar_whatsapp
+from django.db.models.signals import post_save
 
 class Nota(models.Model):
     fecha = models.DateField(auto_now_add=True)
     cliente = models.CharField(max_length=50)
+    telefono = models.CharField(max_length=50)
     empresa = models.CharField(max_length=50)
     ubicacion = models.CharField(max_length=50)
     equipo = models.CharField(max_length=50)
@@ -43,3 +47,12 @@ class Nota(models.Model):
         self.costo_maniobra_iva = costo_total_iva
 
         super(Nota, self).save(*args, **kwargs)
+        
+@receiver(post_save, sender=Nota)
+def procesar_nota(sender, instance, created, **kwargs):
+    if created:
+        # Generar PDF
+        archivo_pdf = generar_pdf(instance)
+        
+        # Enviar el PDF por WhatsApp al teléfono de la nota
+        enviar_whatsapp(archivo_pdf, instance.telefono)
