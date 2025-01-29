@@ -4,7 +4,7 @@ from .models import Ingeniero, Material, Pedido, PedidoMaterial
 class IngenieroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingeniero
-        fields = ['id', 'ingeniero']  # Asegúrate de incluir todos los campos que necesites
+        fields = ['id', 'ingeniero']  # Se mantiene igual
 
 class MaterialSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,15 +12,14 @@ class MaterialSerializer(serializers.ModelSerializer):
         fields = ['id', 'nombre', 'cantidad']
 
 class PedidoMaterialSerializer(serializers.ModelSerializer):
-    material = MaterialSerializer()
-    ingeniero = IngenieroSerializer()
+    material = MaterialSerializer()  # Se mantiene igual
 
     class Meta:
         model = PedidoMaterial
-        fields = ['id', 'pedido', 'material', 'ingeniero', 'fecha']
+        fields = ['id', 'material', 'cantidad', 'fecha']  # 🔹 Se agregó 'cantidad'
 
 class PedidoSerializer(serializers.ModelSerializer):
-    ingeniero = IngenieroSerializer()
+    ingeniero = serializers.StringRelatedField()  # 🔹 Ahora muestra el nombre del ingeniero
     materiales = PedidoMaterialSerializer(many=True, read_only=True)
 
     class Meta:

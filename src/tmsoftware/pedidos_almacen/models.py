@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 class Ingeniero(models.Model):
     ingeniero = models.OneToOneField(User, on_delete=models.CASCADE)
-    
+
     def __str__(self):
-        return self.user.username
+        return self.ingeniero.username  # Asegurar que devuelve el nombre correctamente
 
 class Material(models.Model):
     nombre = models.CharField(max_length=255)
@@ -19,21 +19,13 @@ class Pedido(models.Model):
     fecha_solicitud = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Pedido #{self.id} - {self.ingeniero.nombre}"
-    
-    '''def lista_materiales(self):
-        """Devuelve una lista de materiales con cantidad para este pedido sin usar variables intermedias."""
-        return list(self.materiales.values('material__nombre', 'cantidad'))'''
+        return f"Pedido #{self.id} - {self.ingeniero.ingeniero.username}"
 
 class PedidoMaterial(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='materiales')
-    ingeniero = models.ForeignKey(Ingeniero, on_delete=models.CASCADE)
-    fecha = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
-    
+    cantidad = models.PositiveIntegerField(default=1)  # Agregar cantidad
+    fecha = models.DateTimeField(auto_now_add=True)  # Ahora almacena la fecha correctamente
 
     def __str__(self):
-        materiales_str = ", ".join([f"{m.material.nombre}: {m.cantidad}" 
-                                    for m in self.pedido.materiales.all()])
-        
-        return f"Ingeniero: {self.ingeniero.nombre}, Fecha: {self.fecha}, Materiales: {materiales_str}"
+        return f"Pedido {self.pedido.id} - {self.material.nombre}: {self.cantidad}"

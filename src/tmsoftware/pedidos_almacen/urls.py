@@ -1,14 +1,13 @@
-from django.urls import path
-from .views import IngenieroList, MaterialList, PedidoList, PedidoMaterialList
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import IngenieroViewSet, MaterialViewSet, PedidoViewSet, PedidoMaterialViewSet
+
+router = DefaultRouter()
+router.register(r'ingenieros', IngenieroViewSet)
+router.register(r'materiales', MaterialViewSet)
+router.register(r'pedidos', PedidoViewSet)
+router.register(r'pedidos-materiales', PedidoMaterialViewSet)
 
 urlpatterns = [
-    path('ingenieros/', IngenieroList.as_view(), name='ingeniero-list'),
-    path('materiales/', MaterialList.as_view(), name='material-list'),
-    path('materiales/<int:pk>/', MaterialList.as_view(), name='material-detail'),
-    
-    path('pedidos/', PedidoList.as_view(), name='pedido-list'),
-    path('pedidos/<int:pk>/', PedidoList.as_view(), name='pedido-detail'),
-    
-    path('pedidos-materiales/', PedidoMaterialList.as_view(), name='pedido-material-list'),
-    path('pedidos-materiales/<int:pk>/', PedidoMaterialList.as_view(), name='pedido-material-detail'),
+    path('', include(router.urls)),
 ]
