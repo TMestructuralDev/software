@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "pedidos_almacen",
     "home",
     "creadorPDF",
+    "autenticacion",
     
 
 ]
