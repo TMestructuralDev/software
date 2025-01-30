@@ -1,6 +1,12 @@
-from django.urls import path
-from .views import CrearNotaAPIView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import NotaViewSet
+
+# Crear un router por defecto
+router = DefaultRouter()
+router.register(r'notas_gruas', NotaViewSet, basename='notas_gruas')
 
 urlpatterns = [
-    path('api/notas_gruas/', CrearNotaAPIView.as_view(), name='notas_gruas_api'),
+    # Incluir las URLs generadas automáticamente por el router
+    path('api/', include(router.urls)),
 ]

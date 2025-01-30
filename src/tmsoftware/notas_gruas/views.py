@@ -1,15 +1,17 @@
-from rest_framework import status
+from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from .models import Nota
 from .serializers import NotaSerializer
 from django.http import JsonResponse
 from creadorPDF.utils import generar_pdf, enviar_whatsapp
 
-class CrearNotaAPIView(APIView):
-    def post(self, request, *args, **kwargs):
+class NotaViewSet(viewsets.ModelViewSet):
+    queryset = Nota.objects.all()
+    serializer_class = NotaSerializer
+
+    def create(self, request, *args, **kwargs):
         # Serializar los datos recibidos
-        serializer = NotaSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             # Guardar la nueva nota
             nueva_nota = serializer.save()

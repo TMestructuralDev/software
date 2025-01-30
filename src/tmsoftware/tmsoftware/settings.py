@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     "gruas",
     "estructuras",
     "almacen",
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     "pedidos_almacen",
     "home",
     "creadorPDF",
+    
 
 ]
 
@@ -143,5 +145,6 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
