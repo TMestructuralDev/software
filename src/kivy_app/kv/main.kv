@@ -1,0 +1,22 @@
+ScreenManager:
+    MainScreen:
+
+<MainScreen>:
+    name: "main"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+
+        MDLabel:
+            text: "Selecciona una opción"
+            halign: "center"
+            font_style: "H5"
+
+        MDRaisedButton:
+            text: "Estructural"
+            on_release: app.root.current = "estructural"
+
+        MDRaisedButton:
+            text: "Grúas"
+            on_release: app.root.current = "gruas"
