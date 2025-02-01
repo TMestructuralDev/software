@@ -6,3 +6,6 @@ class MainScreen(MDScreen):
 
     def go_to_gruas(self):
         self.manager.current = "gruas"
+        
+    def go_to_notas_gruas(self):
+        self.manager.current = "notas_gruas"

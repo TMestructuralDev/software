@@ -1,0 +1,102 @@
+<NotaGruasScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 20
+
+        MDLabel:
+            text: "Crear Nota de Grúas"
+            halign: "center"
+            theme_text_color: "Primary"
+
+        GridLayout:
+            cols: 2
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+
+            MDTextField:
+                hint_text: "Cliente"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Teléfono"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Empresa"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Ubicación"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Equipo"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Operador"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Ayudante"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Trabajo Realizado"
+                size_hint: 1, None
+                height: 40
+
+            MDDatePicker:
+                size_hint: 1, None
+                height: 40
+
+            MDTimePicker:
+                size_hint: 1, None
+                height: 40
+
+            MDTimePicker:
+                size_hint: 1, None
+                height: 40
+
+            MDTimePicker:
+                size_hint: 1, None
+                height: 40
+
+            MDTimePicker:
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Horas de Trabajo"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Costo por Hora"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Costo de Maniobra"
+                size_hint: 1, None
+                height: 40
+
+            MDTextField:
+                hint_text: "Costo Maniobra con IVA"
+                size_hint: 1, None
+                height: 40
+
+        MDRaisedButton:
+            text: "Enviar Nota"
+            size_hint: None, None
+            size: "200dp", "50dp"
+            on_release: root.send_nota()
