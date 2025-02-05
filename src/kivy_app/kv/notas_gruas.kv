@@ -1,8 +1,18 @@
-<NotaGruasScreen>:
-    BoxLayout:
+
+
+<NotaGruasScreen>: 
+
+    MDBoxLayout:
         orientation: "vertical"
         padding: 20
         spacing: 20
+        canvas.before:
+            Color:
+                rgba: 1, 0, 0, 0.3  # Fondo rojo semi-transparente
+            Rectangle:
+                pos: self.pos
+                size: self.size
+ 
 
         MDLabel:
             text: "Crear Nota de Grúas"
@@ -16,82 +26,96 @@
             height: self.minimum_height
 
             MDTextField:
+                id: cliente
                 hint_text: "Cliente"
                 size_hint: 1, None
                 height: 40
 
             MDTextField:
+                id: telefono
                 hint_text: "Teléfono"
                 size_hint: 1, None
                 height: 40
 
             MDTextField:
+                id: fecha
+                hint_text: "Fecha"
+                size_hint: 1, None
+                height: 40
+                on_focus: root.show_date_picker(self) if self.focus else None
+                text: root.selected_date  # Esto se actualizará dinámicamente
+
+            MDTextField:
+                id: empresa
                 hint_text: "Empresa"
                 size_hint: 1, None
                 height: 40
 
             MDTextField:
+                id: ubicacion
                 hint_text: "Ubicación"
                 size_hint: 1, None
                 height: 40
 
             MDTextField:
+                id: equipo
                 hint_text: "Equipo"
                 size_hint: 1, None
                 height: 40
 
             MDTextField:
+                id: operador
                 hint_text: "Operador"
                 size_hint: 1, None
                 height: 40
 
             MDTextField:
+                id: ayudante
                 hint_text: "Ayudante"
                 size_hint: 1, None
                 height: 40
 
             MDTextField:
+                id: trabajo_realizado
                 hint_text: "Trabajo Realizado"
                 size_hint: 1, None
                 height: 40
 
-            MDDatePicker:
+            MDTextField:
+                id: hora_salida
+                hint_text: "Hora de Salida"
                 size_hint: 1, None
                 height: 40
-
-            MDTimePicker:
-                size_hint: 1, None
-                height: 40
-
-            MDTimePicker:
-                size_hint: 1, None
-                height: 40
-
-            MDTimePicker:
-                size_hint: 1, None
-                height: 40
-
-            MDTimePicker:
-                size_hint: 1, None
-                height: 40
+                on_focus: if self.focus: root.show_time_picker(self)
+                text: root.hora_salida
 
             MDTextField:
-                hint_text: "Horas de Trabajo"
+                id: hora_llegada
+                hint_text: "Hora de Llegada"
                 size_hint: 1, None
                 height: 40
+                on_focus: if self.focus: root.show_time_picker(self)
+                text: root.hora_llegada
 
             MDTextField:
+                id: hora_termino
+                hint_text: "Hora de Termino"
+                size_hint: 1, None
+                height: 40
+                on_focus: if self.focus: root.show_time_picker(self)
+                text: root.hora_termino
+
+            MDTextField:
+                id: hora_regreso
+                hint_text: "Hora de Regreso"
+                size_hint: 1, None
+                height: 40
+                on_focus: if self.focus: root.show_time_picker(self)
+                text: root.hora_regreso
+
+            MDTextField:
+                id: costo_hora
                 hint_text: "Costo por Hora"
-                size_hint: 1, None
-                height: 40
-
-            MDTextField:
-                hint_text: "Costo de Maniobra"
-                size_hint: 1, None
-                height: 40
-
-            MDTextField:
-                hint_text: "Costo Maniobra con IVA"
                 size_hint: 1, None
                 height: 40
 
@@ -99,4 +123,3 @@
             text: "Enviar Nota"
             size_hint: None, None
             size: "200dp", "50dp"
-            on_release: root.send_nota()

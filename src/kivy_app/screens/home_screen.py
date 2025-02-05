@@ -1,11 +1,14 @@
 from kivymd.uix.screen import MDScreen
 
-class MainScreen(MDScreen):
-    def go_to_estructural(self):
-        self.manager.current = "estructural"
 
-    def go_to_gruas(self):
-        self.manager.current = "gruas"
+class HomeScreen(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         
-    def go_to_notas_gruas(self):
-        self.manager.current = "notas_gruas"
+    def go_to_estructural(self):
+        # Cambio de pantalla a la vista estructural
+        self.manager.current = "estructural_screen"
+
+    def go_to_nota_gruas(self):
+        # Cambio de pantalla a la vista de notas de grúas
+        self.manager.current = "notas_gruas_screen"

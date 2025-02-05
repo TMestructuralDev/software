@@ -1,15 +1,13 @@
 from kivy.uix.screenmanager import ScreenManager
-from screens.home_screen import MainScreen
-from screens.estructural_screen import EstructuralScreen
-from screens.gruas_screen import GruasScreen
+from screens.home_screen import HomeScreen
 from screens.notas_gruas_screen import NotaGruasScreen
+from screens.estructural_screen import EstructuralScreen
 
 class NavigationController(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.add_widget(MainScreen(name="main"))  # <- Pantalla principal
-        self.add_widget(EstructuralScreen(name="estructural"))
-        self.add_widget(GruasScreen(name="gruas"))
-        self.add_widget(NotaGruasScreen(name="nota_gruas"))
+        self.add_widget(HomeScreen(name="home"))  # <- Pantalla principal
+        self.add_widget(EstructuralScreen(name="estructural_screen"))
+        self.add_widget(NotaGruasScreen(name="notas_gruas_screen"))
 
-        self.current = "main"  # <- IMPORTANTE: Esto asegura que se muestre MainScreen
+        self.current = "home"  # <- IMPORTANTE: Esto asegura que se muestre MainScreen

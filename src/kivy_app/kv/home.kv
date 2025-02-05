@@ -1,0 +1,20 @@
+ScreenManager:
+    HomeScreen:
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 50
+        spacing: 20
+
+        MDRaisedButton:
+            text: "Estructural"
+            size_hint: None, None
+            size: "200dp", "50dp"
+            on_release: root.go_to_estructural()
+
+        MDRaisedButton:
+            text: "Grúas"
+            size_hint: None, None
+            size: "200dp", "50dp"
+            on_release: root.go_to_nota_gruas()

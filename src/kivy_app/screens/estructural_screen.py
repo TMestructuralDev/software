@@ -1,4 +1,5 @@
 from kivymd.uix.screen import MDScreen
 
 class EstructuralScreen(MDScreen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
