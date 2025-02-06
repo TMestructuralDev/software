@@ -1,12 +1,16 @@
+
+### pedir al formulario la informacion
+
 import requests
 
-API_URL = "http://127.0.0.1:8000/api/login/"
-
-def login_request(username, password):
+def enviar_datos(datos):
+    """Envía los datos del formulario al backend de Django."""
+    url = "http://localhost:8000/api/formulario/"  # URL de tu API en Django
     try:
-        response = requests.post(API_URL, data={"username": username, "password": password})
-        if response.status_code == 200:
-            return {"success": True, "token": response.json().get("token")}
-        return {"success": False}
-    except requests.exceptions.RequestException:
-        return {"success": False}
+        response = requests.post(url, json=datos)
+        if response.status_code == 201:  # Si se creó correctamente
+            print("Datos enviados con éxito.")
+        else:
+            print(f"Error al enviar los datos: {response.status_code}")
+    except Exception as e:
+        print(f"Ocurrió un error: {e}")

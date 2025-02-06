@@ -12,3 +12,4 @@ class HomeScreen(MDScreen):
     def go_to_nota_gruas(self):
         # Cambio de pantalla a la vista de notas de grúas
         self.manager.current = "notas_gruas_screen"
+        
