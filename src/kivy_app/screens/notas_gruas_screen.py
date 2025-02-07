@@ -3,10 +3,9 @@ from kivy.lang import Builder
 from widgets.date_picker import DatePicker  
 from widgets.time_picker import TimePicker
 from widgets.formulario_gruas import Formulario
-from kivy.properties import ObjectProperty, StringProperty 
+from kivy.properties import StringProperty 
 
 class NotaGruasScreen(MDScreen):
-    #date_picker = ObjectProperty(None)
     selected_date = StringProperty("")
     hora_salida = StringProperty("")
     hora_llegada = StringProperty("")
