@@ -1,7 +1,3 @@
-## pedir a utils calcular horas que haga sus calculos
-
-## pedir al api que envie la nota al backend a su base de datos
-
 import re
 from kivy.uix.boxlayout import BoxLayout
 from .api_client import ApiClient
