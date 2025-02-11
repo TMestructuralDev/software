@@ -3,7 +3,7 @@ from kivy.properties import StringProperty
 from kivymd.uix.boxlayout import MDBoxLayout
 
 class DatePicker(MDBoxLayout):  # Cambiado de MDScreen a MDBoxLayout para ser usado como widget
-    selected_date = StringProperty("")
+    fecha = StringProperty("")
 
     def show_date_picker(self, caller):
         """Abre el selector de fecha y actualiza el campo de texto."""
@@ -14,6 +14,6 @@ class DatePicker(MDBoxLayout):  # Cambiado de MDScreen a MDBoxLayout para ser us
 
     def on_date_selected(self, instance, value, date_range):
         """Guarda la fecha seleccionada y la muestra en el campo de texto que la llamó."""
-        self.selected_date = str(value)
+        self.fecha = str(value)
         if self.caller:
-            self.caller.text = self.selected_date  # Actualiza el campo de te
+            self.caller.text = self.fecha  # Actualiza el campo de te

@@ -1,10 +1,7 @@
-
-### pedir al formulario la informacion
-
 import requests
 
-class ApiClient():
-
+class ApiClient:
+    @staticmethod
     def enviar_datos_cliente(datos):
         """Envía los datos del formulario al backend de Django."""
         url = "http://localhost:8000/api/formulario/"  # URL de tu API en Django

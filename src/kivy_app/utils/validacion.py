@@ -4,34 +4,17 @@
 
 import re
 from kivy.uix.boxlayout import BoxLayout
-from utils.api_client import ApiClient
+from .api_client import ApiClient
 
-class Formulario(BoxLayout):
-    def enviar_datos(self):
-        """Recopila los datos, valida y los envía al backend."""
-        datos = {
-            "cliente": self.ids.cliente.text.strip(),
-            "telefono": self.ids.telefono.text.strip(),
-            "fecha": self.ids.fecha.text.strip(),
-            "empresa": self.ids.empresa.text.strip(),
-            "ubicacion": self.ids.ubicacion.text.strip(),
-            "equipo": self.ids.equipo.text.strip(),
-            "operador": self.ids.operador.text.strip(),
-            "ayudante": self.ids.ayudante.text.strip(),
-            "trabajo_realizado": self.ids.fecha.text.strip(),
-            "hora_salida": self.ids.hora_salida.text.strip(),
-            "hora_llegada": self.ids.hora_llegada.text.strip(),
-            "hora_termino": self.ids.hora_termino.text.strip(),
-            "hora_regreso": self.ids.hora_regreso.text.strip(),
-            "costo_hora": self.ids.costo_hora.text.strip(),
-        }
+class ValidacionFormulario(BoxLayout):
+    def enviar_datos(self, datos):
 
         mensaje_error = self.validar_datos(datos)
 
         if mensaje_error:
             print(f"Error: {mensaje_error}")  # Aquí podrías mostrar un mensaje en la interfaz
         else:
-            enviar_datos_cliente(datos)
+            ApiClient.enviar_datos_cliente(datos)
 
     def validar_datos(self, datos):
         """Valida que los datos sean correctos. Retorna un mensaje de error o None si todo es válido."""
