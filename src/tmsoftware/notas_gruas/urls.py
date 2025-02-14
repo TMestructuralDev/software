@@ -8,5 +8,5 @@ router.register(r'notas_gruas', NotaViewSet, basename='notas_gruas')
 
 urlpatterns = [
     # Incluir las URLs generadas automáticamente por el router
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]
