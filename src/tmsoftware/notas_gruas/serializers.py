@@ -5,8 +5,8 @@ class NotaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Nota
         fields = [
-            'id', 'fecha', 'cliente', 'telefono', 'empresa', 'ubicacion',
+            'id', 'cliente', 'telefono', 'fecha', 'empresa', 'ubicacion',
             'equipo', 'operador', 'ayudante', 'trabajo_realizado', 
             'hora_salida', 'hora_llegada', 'hora_termino', 'hora_regreso', 
-            'costo_hora', 'horas_trabajo', 'costo_maniobra', 'costo_maniobra_iva'
+            'costo_hora', 'total_horas', 'total_sin_iva', 'total_con_iva'
         ]

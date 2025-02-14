@@ -8,9 +8,10 @@ class ValidacionFormulario(BoxLayout):
         mensaje_error = self.validar_datos(datos)
 
         if mensaje_error:
-            print(f"Error: {mensaje_error}")  # Aquí podrías mostrar un mensaje en la interfaz
+            return mensaje_error 
         else:
             ApiClient.enviar_datos_cliente(datos)
+            return None 
 
     def validar_datos(self, datos):
         """Valida que los datos sean correctos. Retorna un mensaje de error o None si todo es válido."""

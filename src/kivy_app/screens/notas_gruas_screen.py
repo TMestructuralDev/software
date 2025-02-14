@@ -3,6 +3,7 @@ from kivy.lang import Builder
 from widgets.date_picker import DatePicker  
 from widgets.time_picker import TimePicker
 from utils.validacion import ValidacionFormulario
+from utils.calculos import Calculos
 from kivy.properties import StringProperty 
 
 class NotaGruasScreen(MDScreen):
@@ -60,5 +61,32 @@ class NotaGruasScreen(MDScreen):
             "costo_hora": self.ids.costo_hora.text.strip(),
         }
 
-        # Llama al método de validación y posterior envío
-        self.validacion_formulario.enviar_datos(datos)
+        # Realizar cálculos
+        total_horas = Calculos.calcular_total_horas(datos["hora_salida"], datos["hora_regreso"])
+        if total_horas is None:
+            self.ids.error.text = "[color=ff0000]Error en formato de hora[/color]"
+            return
+
+        total_sin_iva = Calculos.calcular_total_sin_iva(total_horas, datos["costo_hora"])
+        if total_sin_iva is None:
+            self.ids.error.text = "[color=ff0000]Error en costo por hora[/color]"
+            return
+
+        total_con_iva = Calculos.calcular_total_con_iva(total_sin_iva)
+        
+        # Mostrar los resultados en la consola
+        print(f"Total de horas: {total_horas}")
+        print(f"Total sin IVA: {total_sin_iva}")
+        print(f"Total con IVA: {total_con_iva}")
+
+        # Agregar los cálculos al diccionario de datos
+        datos["total_horas"] = total_horas
+        datos["total_sin_iva"] = total_sin_iva
+        datos["total_con_iva"] = total_con_iva
+
+        # Validar datos antes de enviarlos
+        mensaje_error = self.validacion_formulario.enviar_datos(datos)
+        if mensaje_error:
+            self.ids.error.text = f"[color=ff0000]{mensaje_error}[/color]"
+        else:
+            self.ids.error.text = "[color=00ff00]Datos enviados correctamente[/color]"
