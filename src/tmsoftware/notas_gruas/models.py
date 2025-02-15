@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from .pdf_generador import generar_pdf  # Importamos la función para generar PDF
-from .pdf_envio import enviar_pdf_whatsapp
+from .pdf_envio import PDF_envio
 
 ###   ###   ###   ###   ###   ###   ###   ###
 
@@ -41,4 +41,4 @@ class Nota(models.Model):
         super().save(update_fields=["pdf_file"])  # Guarda nuevamente solo el campo PDF
         
         # Envía el PDF por WhatsApp al cliente
-        enviar_pdf_whatsapp(self.pdf_file.url, self.telefono)
+        PDF_envio.enviar_pdf_whatsapp(self.pdf_file.url, self.telefono)
