@@ -1,4 +1,7 @@
 from django.db import models
+from django.conf import settings
+from .pdf_generador import generar_pdf  # Importamos la función para generar PDF
+from .pdf_envio import enviar_pdf_whatsapp
 
 ###   ###   ###   ###   ###   ###   ###   ###
 
@@ -20,6 +23,22 @@ class Nota(models.Model):
     total_horas = models.FloatField()
     total_sin_iva = models.FloatField()
     total_con_iva = models.FloatField()
+    pdf_file = models.FileField(upload_to="notas_pdfs/", blank=True, null=True)  # Campo para almacenar el PDF
+
     
     def __str__(self):
         return f"Nota de {self.cliente} - {self.fecha}"
+    
+    def save(self, *args, **kwargs):
+        """Llama a la función de generación de PDF al guardar el modelo"""
+        
+        if not self.pk:  # Solo guarda la primera vez
+            super().save(*args, **kwargs)  
+
+        pdf_path = generar_pdf(self)  # Genera el PDF
+        self.pdf_file.name = pdf_path  # Guarda la ruta del PDF en el modelo
+
+        super().save(update_fields=["pdf_file"])  # Guarda nuevamente solo el campo PDF
+        
+        # Envía el PDF por WhatsApp al cliente
+        enviar_pdf_whatsapp(self.pdf_file.url, self.telefono)

@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     "notas_gruas",
     "pedidos_almacen",
     "home",
-    "creadorPDF",
     "autenticacion",
     
 
