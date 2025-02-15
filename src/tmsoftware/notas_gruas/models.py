@@ -24,6 +24,7 @@ class Nota(models.Model):
     total_sin_iva = models.FloatField()
     total_con_iva = models.FloatField()
     pdf_file = models.FileField(upload_to="notas_pdfs/", blank=True, null=True)  # Campo para almacenar el PDF
+    pdf_url = models.URLField(blank=True, null=True) 
 
     
     def __str__(self):
@@ -41,4 +42,4 @@ class Nota(models.Model):
         super().save(update_fields=["pdf_file"])  # Guarda nuevamente solo el campo PDF
         
         # Envía el PDF por WhatsApp al cliente
-        PDF_envio.enviar_pdf_whatsapp(self.pdf_file.url, self.telefono)
+        PDF_envio.enviar_pdf_twilio(self.pdf_file.url, self.telefono)
