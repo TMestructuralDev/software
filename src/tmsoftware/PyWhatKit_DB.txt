@@ -28,3 +28,8 @@ Time: 16:48
 Phone Number: +526691398103
 Message: http://127.0.0.1:8000/media/notas_pdfs/nota_34.pdf
 --------------------
+Date: 17/2/2025
+Time: 16:57
+Phone Number: +523316056146
+Message: http://127.0.0.1:8000/media/notas_pdfs/nota_35.pdf
+--------------------
