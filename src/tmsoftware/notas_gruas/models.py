@@ -36,10 +36,13 @@ class Nota(models.Model):
         if not self.pk:  # Solo guarda la primera vez
             super().save(*args, **kwargs)  
 
-        pdf_path = generar_pdf(self)  # Genera el PDF
+        pdf_path, pdf_url = generar_pdf(self)  # Genera el PDF
         self.pdf_file.name = pdf_path  # Guarda la ruta del PDF en el modelo
+        self.pdf_url = f"http://127.0.0.1:8000{pdf_url}"
 
-        super().save(update_fields=["pdf_file"])  # Guarda nuevamente solo el campo PDF
+        super().save(update_fields=["pdf_file", "pdf_url"])  # Guarda nuevamente solo el campo PDF
         
         # Envía el PDF por WhatsApp al cliente
-        PDF_envio.enviar_pdf_twilio(self.pdf_file.url, self.telefono)
+        PDF_envio.enviar_pdf(self.pdf_url, self.telefono)
+        
+        print (self.pdf_url)

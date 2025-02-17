@@ -1,19 +1,28 @@
-from twilio.rest import Client
+import pywhatkit
+import pyautogui
+import time
 
 class PDF_envio():
+    
+    @staticmethod
+    def enviar_pdf(pdf_url, numero_destino):
+        try:
+            
+            mensaje = f"{pdf_url}"
+            
+            numero_destino = f"+52{numero_destino}"
 
-    def enviar_pdf_twilio(pdf_url, numero_destino):
-        # Credenciales de Twilio
-        account_sid = 'tu_account_sid'
-        auth_token = 'tu_auth_token'
-        client = Client(account_sid, auth_token)
+            # Enviar mensaje de WhatsApp con el link al PDF
+            pywhatkit.sendwhatmsg_instantly(numero_destino, mensaje)
+            time.sleep(5)
+            pyautogui.click() 
+            time.sleep(1) 
+            pyautogui.press("enter")
 
-        # Enviar el mensaje con el archivo PDF
-        message = client.messages.create(
-            body="Aquí está el PDF de la nota que solicitaste",
-            from_='whatsapp:+14155238886',  # El número de WhatsApp de Twilio
-            to=f'whatsapp:{numero_destino}',  # El número de destino
-            media_url=[pdf_url]  # URL pública del PDF que has cargado
-        )
+            print("Mensaje enviado correctamente!")
 
-        print(f"Mensaje enviado: {message.sid}")
+            # Esperar unos segundos para evitar bloqueos de WhatsApp Web
+            
+
+        except Exception as e:
+            print(f"Error al enviar el mensaje: {e}")

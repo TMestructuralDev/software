@@ -1,0 +1,30 @@
+Date: 17/2/2025
+Time: 16:42
+Phone Number: +526691398103
+Message: Aquí está tu PDF: notas_pdfs\nota_29.pdf
+--------------------
+Date: 17/2/2025
+Time: 16:43
+Phone Number: +526691398103
+Message: Aquí está tu PDF: http://127.0.0.1:8000/media/notas_pdfs/nota_30.pdf
+--------------------
+Date: 17/2/2025
+Time: 16:44
+Phone Number: +526691398103
+Message: http://127.0.0.1:8000/media/notas_pdfs/nota_31.pdf
+--------------------
+Date: 17/2/2025
+Time: 16:46
+Phone Number: +526691398103
+Message: http://127.0.0.1:8000/media/notas_pdfs/nota_32.pdf
+--------------------
+Date: 17/2/2025
+Time: 16:47
+Phone Number: +526691398103
+Message: http://127.0.0.1:8000/media/notas_pdfs/nota_33.pdf
+--------------------
+Date: 17/2/2025
+Time: 16:48
+Phone Number: +526691398103
+Message: http://127.0.0.1:8000/media/notas_pdfs/nota_34.pdf
+--------------------

@@ -41,5 +41,7 @@ def generar_pdf(nota):
     # Guardar el PDF en la carpeta de medios
     with open(pdf_path, "wb") as f:
         f.write(buffer.getvalue())
+        
+    pdf_url = f"{settings.MEDIA_URL}notas_pdfs/{pdf_filename}"
 
-    return os.path.join("notas_pdfs", pdf_filename)  # Devolver la ruta relativa del PDF
+    return os.path.join("notas_pdfs", pdf_filename), pdf_url  # Devolver la ruta relativa del PDF
