@@ -12,3 +12,9 @@ db.sqlite3
 # Otros archivos que no quieres rastrear
 *.log
 *.env
+
+# Ignorar PyWhatKit_DB.txt
+tmsoftware/PyWhatKit_DB.txt
+
+# Ignorar toda la carpeta media
+tmsoftware/media/
