@@ -14,7 +14,7 @@ db.sqlite3
 *.env
 
 # Ignorar PyWhatKit_DB.txt
-src/tmsoftware/PyWhatKit_DB.txt
+Tm Software/src/tmsoftware/PyWhatKit_DB.txt
 
 # Ignorar toda la carpeta media
-src/tmsoftware/media/
+TM Software/src/tmsoftware/media/
