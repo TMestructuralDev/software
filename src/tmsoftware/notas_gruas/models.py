@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 from .pdf_generador import generar_pdf  # Importamos la función para generar PDF
 from .pdf_envio import PDF_envio
 

@@ -2,6 +2,9 @@ import os
 from dotenv import load_dotenv
 from twilio.rest import Client
 
+# Cargar variables de entorno desde .env
+load_dotenv()
+
 class PDF_envio():
     
     def enviar_pdf(pdf_url, telefono):
@@ -18,4 +21,5 @@ class PDF_envio():
             media_url=pdf_url
         )
 
-        print(message.sid)
+        print(f"Mensaje enviado: {message.sid}")
+        print(f"Estado del mensaje: {message.status}") 
