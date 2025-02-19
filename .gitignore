@@ -1,6 +1,7 @@
 # Ignorar el entorno virtual
 venvs/
 deploy/
+.env
 
 # Archivos de compilación de Python
 __pycache__/
