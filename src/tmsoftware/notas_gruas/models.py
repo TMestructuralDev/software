@@ -42,6 +42,6 @@ class Nota(models.Model):
         super().save(update_fields=["pdf_file", "pdf_url"])  # Guarda nuevamente solo el campo PDF
         
         # Envía el PDF por WhatsApp al cliente
-        PDF_envio.enviar_pdf(self.pdf_url, self.telefono)
+        # PDF_envio.enviar_pdf(self.pdf_url, self.telefono)
         
         print (self.pdf_url)

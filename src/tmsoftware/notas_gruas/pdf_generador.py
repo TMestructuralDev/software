@@ -1,47 +1,101 @@
 import os
 from io import BytesIO
+import textwrap
 from django.conf import settings
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+from reportlab.lib import colors
 
 def generar_pdf(nota):
-    """Genera un PDF a partir de una instancia de Nota y lo guarda en el servidor."""
+    """Genera un PDF con personalización: logo, colores y mejor diseño."""
     buffer = BytesIO()
     pdf = canvas.Canvas(buffer, pagesize=letter)
+    
+    pdf.setFillColorRGB(0, 0, 0)
+    pdf.rect(0, 0, 612, 792, fill=1)  # Rectángulo de fondo negro
 
-    pdf.drawString(100, 750, f"Cliente: {nota.cliente}")
-    pdf.drawString(100, 730, f"Teléfono: {nota.telefono}")
-    pdf.drawString(100, 710, f"Fecha: {nota.fecha}")
-    pdf.drawString(100, 690, f"Empresa: {nota.empresa}")
-    pdf.drawString(100, 670, f"Ubicación: {nota.ubicacion}")
-    pdf.drawString(100, 650, f"Equipo: {nota.equipo}")
-    pdf.drawString(100, 630, f"Operador: {nota.operador}")
-    pdf.drawString(100, 610, f"Ayudante: {nota.ayudante}")
-    pdf.drawString(100, 590, f"Trabajo Realizado: {nota.trabajo_realizado[:50]}...")
-    pdf.drawString(100, 570, f"Hora de salida: {nota.hora_salida}")
-    pdf.drawString(100, 550, f"Hora de llegada: {nota.hora_llegada}")
-    pdf.drawString(100, 530, f"Hora de término: {nota.hora_termino}")
-    pdf.drawString(100, 510, f"Hora de regreso: {nota.hora_regreso}")
-    pdf.drawString(100, 490, f"Costo por hora: ${nota.costo_hora}")
-    pdf.drawString(100, 470, f"Total de horas: {nota.total_horas}")
-    pdf.drawString(100, 450, f"Total sin IVA: ${nota.total_sin_iva}")
-    pdf.drawString(100, 430, f"Total con IVA: ${nota.total_con_iva}")
+    # Configurar fuentes y colores
+    pdf.setFont("Helvetica-Bold", 14)
+    pdf.setFillColorRGB(1, 0.5, 0)  # Color naranja para títulos
+
+    # Agregar logo (ajusta la ruta de la imagen)
+    logo_path = os.path.join(settings.MEDIA_ROOT, "logo_empresa.png")  # Ruta del logo
+    if os.path.exists(logo_path):
+        pdf.drawImage(logo_path, 450, 720, width=120, height=60, preserveAspectRatio=True)
+
+    # Encabezado
+    pdf.drawString(100, 750, "NOTA DE SERVICIO")  # Título
+    pdf.setFont("Helvetica", 14)
+    pdf.setFillColorRGB(1, 0.5, 0) 
+
+    # Información de la nota
+    y = 700  # Posición inicial en Y
+    espacio = 20  # Espacio entre líneas
+
+    datos = [
+    ("Cliente", nota.cliente),
+    ("Teléfono", nota.telefono),
+    ("Fecha", str(nota.fecha)),  
+    ("Empresa", nota.empresa),
+    ("Ubicación", nota.ubicacion),
+    ("Equipo", nota.equipo),
+    ("Operador", nota.operador),
+    ("Ayudante", nota.ayudante),
+    ("", ""),  # Línea en blanco para separación
+    ("Trabajo Realizado", nota.trabajo_realizado[:150] + "..."),
+    ("", ""),  # Línea en blanco para separación
+    ("Hora de salida", str(nota.hora_salida)),  
+    ("Hora de llegada", str(nota.hora_llegada)), 
+    ("Hora de término", str(nota.hora_termino)),  
+    ("Hora de regreso", str(nota.hora_regreso)), 
+    ("Costo por hora", f"${nota.costo_hora}"),
+    ("Total de horas", str(nota.total_horas)),
+    ("", ""),  # Línea en blanco para separación
+    ("Total sin IVA", f"${nota.total_sin_iva}"),
+    ("Cuenta para pago sin IVA", ""), 
+    ("No. Cuenta", "156 992 9903"), 
+    ("No. Cuenta CLABE", "012 180 0156 9929 9031"), 
+    ("", ""),  # Línea en blanco para separación
+    ("Total con IVA", f"${nota.total_con_iva}"),
+    ("Cuenta para pago con IVA", ""), 
+    ("No. Cuenta", "011 922 8780"), 
+    ("No. Cuenta CLABE", "012 744 0011 9228 7806"), 
+] 
+
+    for titulo, valor in datos:
+        
+        pdf.setFont("Helvetica-Bold", 12)
+        pdf.drawString(100, y, f"{titulo}:")
+        
+        if titulo == "Trabajo Realizado":
+            pdf.setFont("Helvetica", 12)
+            # Envolver el texto con un ancho de 70 caracteres
+            wrapped_text = textwrap.wrap(valor, width=50)
+            for linea in wrapped_text:
+                pdf.drawString(300, y, linea)  # Imprime cada línea de trabajo realizado
+                y -= espacio  # Mueve hacia abajo por cada línea del texto envuelto
+        else:
+            pdf.setFont("Helvetica", 12)
+            pdf.drawString(300, y, valor)  # Imprime los demás valores
+            y -= espacio  # Mueve hacia abajo por cada línea normal
+
+    # Agregar línea separadora
+    pdf.setStrokeColor(colors.black)
+    pdf.line(80, y, 500, y)
+
     pdf.save()
-
     buffer.seek(0)
 
-    # Definir la carpeta donde se guardarán los PDFs
+    # Guardar el PDF en el servidor
     pdf_folder = os.path.join(settings.MEDIA_ROOT, "notas_pdfs")
     os.makedirs(pdf_folder, exist_ok=True)
 
-    # Ruta del archivo PDF
     pdf_filename = f"nota_{nota.id}.pdf"
     pdf_path = os.path.join(pdf_folder, pdf_filename)
 
-    # Guardar el PDF en la carpeta de medios
     with open(pdf_path, "wb") as f:
         f.write(buffer.getvalue())
-        
+
     pdf_url = f"{settings.MEDIA_URL}notas_pdfs/{pdf_filename}"
 
-    return os.path.join("notas_pdfs", pdf_filename), pdf_url  # Devolver la ruta relativa del PDF
+    return os.path.join("notas_pdfs", pdf_filename), pdf_url
