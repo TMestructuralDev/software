@@ -5,7 +5,7 @@
         spacing: 20
         canvas.before:
             Color:
-                rgba: 1, 0, 0, 0.3  # Fondo rojo semi-transparente
+                rgba: 0.2, 0.2, 0.2, 1  
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -13,7 +13,16 @@
         MDLabel:
             text: "Crear Nota de Grúas"
             halign: "center"
-            theme_text_color: "Primary"
+            theme_text_color: "Custom"
+            color: 1, 1, 1, 1  # Blanco (RGBA)
+
+        MDRaisedButton:
+            text: "Volver"
+            size_hint: None, None
+            size: "200dp", "50dp"
+            md_bg_color: 1, 0.647, 0, 1  
+            text_color: 1, 1, 1, 1  
+            on_release: app.root.current = "home" 
 
         GridLayout:
             cols: 2
@@ -26,12 +35,16 @@
                 hint_text: "Cliente"
                 size_hint: 1, None
                 height: 40
+                foreground_color: 1, 1, 1, 1  # Blanco
+                hint_text_color: 1, 1, 1, 1  # Blanco
 
             MDTextField:
                 id: telefono
                 hint_text: "Teléfono"
                 size_hint: 1, None
                 height: 40
+                foreground_color: 1, 1, 1, 1  # Blanco
+                hint_text_color: 1, 1, 1, 1  # Blanco
 
             MDTextField:
                 id: fecha
@@ -123,10 +136,13 @@
             text_size: self.width, None
             markup: True  
 
+            
         MDRaisedButton:
             text: "Enviar Nota"
             size_hint: None, None
             size: "200dp", "50dp"
+            md_bg_color: 1, 0.647, 0, 1  
+            text_color: 1, 1, 1, 1  
             on_release: root.enviar_datos()
 
     

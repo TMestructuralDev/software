@@ -10,13 +10,10 @@ def generar_pdf(nota):
     """Genera un PDF con personalización: logo, colores y mejor diseño."""
     buffer = BytesIO()
     pdf = canvas.Canvas(buffer, pagesize=letter)
-    
-    pdf.setFillColorRGB(0, 0, 0)
-    pdf.rect(0, 0, 612, 792, fill=1)  # Rectángulo de fondo negro
 
     # Configurar fuentes y colores
     pdf.setFont("Helvetica-Bold", 14)
-    pdf.setFillColorRGB(1, 0.5, 0)  # Color naranja para títulos
+    pdf.setFillColorRGB(0, 0, 0)  # Color naranja para títulos
 
     # Agregar logo (ajusta la ruta de la imagen)
     logo_path = os.path.join(settings.MEDIA_ROOT, "logo_empresa.png")  # Ruta del logo
@@ -26,7 +23,7 @@ def generar_pdf(nota):
     # Encabezado
     pdf.drawString(100, 750, "NOTA DE SERVICIO")  # Título
     pdf.setFont("Helvetica", 14)
-    pdf.setFillColorRGB(1, 0.5, 0) 
+    pdf.setFillColorRGB(0, 0, 0) 
 
     # Información de la nota
     y = 700  # Posición inicial en Y
