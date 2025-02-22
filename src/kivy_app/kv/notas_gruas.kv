@@ -1,26 +1,57 @@
+<TextFieldPersonalizado@MDTextField>:
+    size_hint: 1, None
+    height: 40
+    mode: "rectangle"
+    theme_text_color: "Custom"
+    hint_text_color_normal: 1, 1, 1, 1  # Naranja
+    hint_text_color_focus: 247/255, 53/255, 15/255, 1  # Naranja
+    text_color: 1, 1, 1, 1  # Color del texto ingresado
+    line_color_focus: 247/255, 53/255, 15/255, 1  # Color de la línea al enfocarse
+    line_color_normal: 1, 1, 1, 1  # Color de la línea normal
+    text_color_normal: 247/255, 53/255, 15/255, 1  # Color del texto cuando no está enfocado
+    theme_text_color: "Custom"
+    
+
 <NotaGruasScreen>:
     MDBoxLayout:
         orientation: "vertical"
+        adaptive_height: True
         padding: 20
         spacing: 20
+
         canvas.before:
             Color:
-                rgba: 0.2, 0.2, 0.2, 1  
+                rgba: 50/255, 50/255, 50/255, 1
             Rectangle:
                 pos: self.pos
                 size: self.size
+                
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_y: None
+            height: "50dp"
+            pos_hint: {"center_x": 0.5}
 
-        MDLabel:
-            text: "Crear Nota de Grúas"
-            halign: "center"
-            theme_text_color: "Custom"
-            color: 1, 1, 1, 1  # Blanco (RGBA)
+            MDLabel:
+                text: "Crear Nota de Grúas"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1  # Blanco (RGBA)
+                font_style: "H3"
+            
+            Image:
+                source: "media/logo_empresa.png"
+                size_hint: .5, .5
+                size: "100dp", "100dp"
+                allow_stretch: True 
+                keep_ratio: True
 
         MDRaisedButton:
             text: "Volver"
             size_hint: None, None
             size: "200dp", "50dp"
-            md_bg_color: 1, 0.647, 0, 1  
+            md_bg_color: 247/255, 53/255, 15/255, 1  
             text_color: 1, 1, 1, 1  
             on_release: app.root.current = "home" 
 
@@ -30,23 +61,19 @@
             size_hint_y: None
             height: self.minimum_height
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: cliente
                 hint_text: "Cliente"
                 size_hint: 1, None
                 height: 40
-                foreground_color: 1, 1, 1, 1  # Blanco
-                hint_text_color: 1, 1, 1, 1  # Blanco
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: telefono
                 hint_text: "Teléfono"
                 size_hint: 1, None
                 height: 40
-                foreground_color: 1, 1, 1, 1  # Blanco
-                hint_text_color: 1, 1, 1, 1  # Blanco
-
-            MDTextField:
+                
+            TextFieldPersonalizado:
                 id: fecha
                 hint_text: "Fecha"
                 size_hint: 1, None
@@ -54,43 +81,43 @@
                 on_focus: root.show_date_picker(self) if self.focus else None
                 text: root.fecha  # Esto se actualizará dinámicamente
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: empresa
                 hint_text: "Empresa"
                 size_hint: 1, None
                 height: 40
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: ubicacion
                 hint_text: "Ubicación"
                 size_hint: 1, None
                 height: 40
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: equipo
                 hint_text: "Equipo"
                 size_hint: 1, None
                 height: 40
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: operador
                 hint_text: "Operador"
                 size_hint: 1, None
                 height: 40
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: ayudante
                 hint_text: "Ayudante"
                 size_hint: 1, None
                 height: 40
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: trabajo_realizado
                 hint_text: "Trabajo Realizado"
                 size_hint: 1, None
                 height: 40
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: hora_salida
                 hint_text: "Hora de Salida"
                 size_hint: 1, None
@@ -98,7 +125,7 @@
                 on_focus: if self.focus: root.show_time_picker(self)
                 text: root.hora_salida
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: hora_llegada
                 hint_text: "Hora de Llegada"
                 size_hint: 1, None
@@ -106,7 +133,7 @@
                 on_focus: if self.focus: root.show_time_picker(self)
                 text: root.hora_llegada
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: hora_termino
                 hint_text: "Hora de Termino"
                 size_hint: 1, None
@@ -114,7 +141,7 @@
                 on_focus: if self.focus: root.show_time_picker(self)
                 text: root.hora_termino
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: hora_regreso
                 hint_text: "Hora de Regreso"
                 size_hint: 1, None
@@ -122,7 +149,7 @@
                 on_focus: if self.focus: root.show_time_picker(self)
                 text: root.hora_regreso
 
-            MDTextField:
+            TextFieldPersonalizado:
                 id: costo_hora
                 hint_text: "Costo por Hora"
                 size_hint: 1, None
@@ -141,7 +168,7 @@
             text: "Enviar Nota"
             size_hint: None, None
             size: "200dp", "50dp"
-            md_bg_color: 1, 0.647, 0, 1  
+            md_bg_color: 247/255, 53/255, 15/255, 1 
             text_color: 1, 1, 1, 1  
             on_release: root.enviar_datos()
 

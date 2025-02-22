@@ -1,5 +1,4 @@
 from kivymd.uix.screen import MDScreen
-from kivy.lang import Builder
 from widgets.date_picker import DatePicker  
 from widgets.time_picker import TimePicker
 from utils.validacion import ValidacionFormulario

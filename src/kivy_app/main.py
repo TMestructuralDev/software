@@ -4,7 +4,10 @@ from controllers.nav_controller import NavigationController
 
 class MyApp(MDApp):
     def build(self):
-        Builder.load_file("kv/home.kv")  # Asegúrate de que el archivo KV se cargue correctamente
+        self.theme_cls.theme_style = "Dark" 
+        #self.theme_cls.primary_palette = "Orange"  # Si no quieres usar naranja, cámbialo a otro color
+        
+        Builder.load_file("kv/home.kv")  # Se carga el archivo KV 
         Builder.load_file("kv/notas_gruas.kv")
         Builder.load_file("kv/estructural.kv")
         

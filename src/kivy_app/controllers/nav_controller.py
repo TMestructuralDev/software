@@ -2,7 +2,6 @@ from kivy.uix.screenmanager import ScreenManager
 from screens.home_screen import HomeScreen
 from screens.notas_gruas_screen import NotaGruasScreen
 from screens.estructural_screen import EstructuralScreen
-from kivy.graphics import Color, Rectangle
 
 class NavigationController(ScreenManager):
     def __init__(self, **kwargs):

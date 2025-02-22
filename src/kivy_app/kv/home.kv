@@ -1,5 +1,3 @@
-ScreenManager:
-    HomeScreen:
 
 <HomeScreen>:
 
@@ -9,25 +7,41 @@ ScreenManager:
         spacing: 20
         canvas.before:
             Color:
-                rgba: 0.2, 0.2, 0.2, 1 
+                rgba: 1, 1, 1, 1
             Rectangle:
                 pos: self.pos
                 size: self.size 
 
         MDRaisedButton:
             text: "Estructural"
-            size_hint_x: 1
-            size_hint_y: 1
+            font_style: "Button"
+            font_size: "64sp"
+            bold: True
+            # shadow_color: [247/255, 53/255, 15/255, 1]
+            size_hint_x: .55 
+            size_hint_y: 1  
+            pos_hint: {"center_x": 0.5}
             height: "50dp"  
-            md_bg_color: 0, 0, 0, 1  
-            text_color: 1, 0.647, 0, 1
+            md_bg_color: 247/255, 53/255, 15/255, 1
+            text_color: 30/255, 30/255, 30/255, 1
             on_release: root.go_to_estructural()
+
+        Image:
+            source: "media/logo_empresa.png"  # Asegúrate de que el archivo logo.png esté en el directorio adecuado
+            size_hint: None, None
+            size: "200dp", "200dp"  # Ajusta el tamaño del logo según lo necesites
+            pos_hint: {"center_x": 0.5}  # Centra el logo horizontalmente en el layout
 
         MDRaisedButton:
             text: "Grúas"
-            size_hint_x: 1 
-            size_hint_y: 1
+            font_style: "Button"
+            font_size: "64sp"
+            bold: True
+            # shadow_color: [247/255, 53/255, 15/255, 1]
+            size_hint_x: .55 
+            size_hint_y: 1  
+            pos_hint: {"center_x": 0.5}
             height: "50dp" 
-            md_bg_color: 0, 0, 0, 1 
-            text_color: 1, 0.647, 0, 1 
+            md_bg_color: 247/255, 53/255, 15/255, 1
+            text_color: 30/255, 30/255, 30/255, 1 
             on_release: root.go_to_nota_gruas()
