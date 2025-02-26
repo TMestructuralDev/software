@@ -4,10 +4,9 @@
     MDBoxLayout:
         orientation: "vertical"
         padding: 10
-        spacing: 20
         canvas.before:
             Color:
-                rgba: 1, 1, 1, 1
+                rgba: 50/255, 50/255, 50/255, 1
             Rectangle:
                 pos: self.pos
                 size: self.size 
@@ -17,31 +16,34 @@
             font_style: "Button"
             font_size: "64sp"
             bold: True
-            # shadow_color: [247/255, 53/255, 15/255, 1]
-            size_hint_x: .55 
+            shadow_color: [0, 0, 0, 0.6]
+            size_hint_x: 1 
             size_hint_y: 1  
             pos_hint: {"center_x": 0.5}
             height: "50dp"  
             md_bg_color: 247/255, 53/255, 15/255, 1
-            text_color: 30/255, 30/255, 30/255, 1
+            text_color: 220/255, 220/255, 220/255, 1
+            ripple: True 
             on_release: root.go_to_estructural()
 
         Image:
-            source: "media/logo_empresa.png"  # Asegúrate de que el archivo logo.png esté en el directorio adecuado
+            source: "media/logo_empresa.png"  
             size_hint: None, None
-            size: "200dp", "200dp"  # Ajusta el tamaño del logo según lo necesites
-            pos_hint: {"center_x": 0.5}  # Centra el logo horizontalmente en el layout
+            size: "200dp", "200dp"  
+            pos_hint: {"center_x": 0.5} 
 
         MDRaisedButton:
             text: "Grúas"
             font_style: "Button"
             font_size: "64sp"
             bold: True
-            # shadow_color: [247/255, 53/255, 15/255, 1]
-            size_hint_x: .55 
+            shadow_color: [0, 0, 0, 0.6]
+            size_hint_x: 1 
             size_hint_y: 1  
             pos_hint: {"center_x": 0.5}
             height: "50dp" 
             md_bg_color: 247/255, 53/255, 15/255, 1
-            text_color: 30/255, 30/255, 30/255, 1 
+            text_color: 220/255, 220/255, 220/255, 1 
+            ripple: True 
             on_release: root.go_to_nota_gruas()
+
