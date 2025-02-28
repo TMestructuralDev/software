@@ -1,0 +1,28 @@
+<LoginScreen>:
+    name: "login"
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(40)
+        pos_hint: {"center_y": 0.5}
+        
+        MDTextField:
+            id: username
+            hint_text: "Usuario"
+            icon_right: "account"
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5}
+        
+        MDTextField:
+            id: password
+            hint_text: "Contraseña"
+            icon_right: "eye-off"
+            password: True
+            size_hint_x: 0.8
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Iniciar Sesión"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.login()

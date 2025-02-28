@@ -24,7 +24,9 @@ urlpatterns = [
     path('api/', include('pedidos_almacen.urls')),
     path('api/', include('notas_gruas.urls')),  
     path('api/', include('almacen.urls')), 
-    path('api/', include('autenticacion.urls')), 
+    path('api/', include('autenticacion.urls')),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.authtoken')), 
 ]
 
 if settings.DEBUG:

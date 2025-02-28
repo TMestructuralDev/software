@@ -10,6 +10,7 @@ class MyApp(MDApp):
         Builder.load_file("kv/home.kv")  # Se carga el archivo KV 
         Builder.load_file("kv/notas_gruas.kv")
         Builder.load_file("kv/estructural.kv")
+        Builder.load_file("kv/login.kv")
         
         return NavigationController()
 
