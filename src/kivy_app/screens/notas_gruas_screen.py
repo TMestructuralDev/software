@@ -89,3 +89,20 @@ class NotaGruasScreen(MDScreen):
             self.ids.error.text = f"[color=ff0000]{mensaje_error}[/color]"
         else:
             self.ids.error.text = "[color=00ff00]Datos enviados correctamente[/color]"
+            
+            
+        # Limpiar el formulario
+        self.limpiar_formulario()
+
+        # Redirigir a la pantalla "home_screen"
+        self.manager.current = "home_screen"
+        
+
+    def limpiar_formulario(self):
+        """Limpia todos los campos del formulario."""
+        for campo in ["cliente", "telefono", "fecha", "empresa", "ubicacion", 
+                    "equipo", "operador", "ayudante", "trabajo_realizado", 
+                    "hora_salida", "hora_llegada", "hora_termino", "hora_regreso", "costo_hora"]:
+            self.ids[campo].text = ""
+
+        self.ids.error.text = ""

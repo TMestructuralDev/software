@@ -50,11 +50,13 @@ def generar_pdf(nota):
     ("", ""),  # Línea en blanco para separación
     ("Total sin IVA", f"${nota.total_sin_iva}"),
     ("Cuenta para pago sin IVA", ""), 
+    ("Paulina Guadalupe Manjarrez Tirado", "BBVA"), 
     ("No. Cuenta", "156 992 9903"), 
     ("No. Cuenta CLABE", "012 180 0156 9929 9031"), 
     ("", ""),  # Línea en blanco para separación
     ("Total con IVA", f"${nota.total_con_iva}"),
     ("Cuenta para pago con IVA", ""), 
+    ("CIMA Ingenieria Estructural", "BBVA"), 
     ("No. Cuenta", "011 922 8780"), 
     ("No. Cuenta CLABE", "012 744 0011 9228 7806"), 
 ] 
@@ -69,11 +71,11 @@ def generar_pdf(nota):
             # Envolver el texto con un ancho de 70 caracteres
             wrapped_text = textwrap.wrap(valor, width=50)
             for linea in wrapped_text:
-                pdf.drawString(300, y, linea)  # Imprime cada línea de trabajo realizado
+                pdf.drawString(350, y, linea)  # Imprime cada línea de trabajo realizado
                 y -= espacio  # Mueve hacia abajo por cada línea del texto envuelto
         else:
             pdf.setFont("Helvetica", 12)
-            pdf.drawString(300, y, valor)  # Imprime los demás valores
+            pdf.drawString(350, y, valor)  # Imprime los demás valores
             y -= espacio  # Mueve hacia abajo por cada línea normal
 
     # Agregar línea separadora
