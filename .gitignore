@@ -21,3 +21,4 @@ src/kivy_app/buildozer.spec
 src/kivy_app/android-sdk.zip
 src/kivy_app/bin
 src/kivy_app/.python-version
+src/kivy_app/.gradle
