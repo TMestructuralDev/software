@@ -19,3 +19,4 @@ src/tmsoftware/media/
 src/kivy_app/.buildozer/
 src/kivy_app/buildozer.spec
 src/kivy_app/android-sdk.zip
+src/kivy_app/bin
