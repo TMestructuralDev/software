@@ -6,6 +6,7 @@ deploy/
 # Archivos de compilación de Python
 __pycache__/
 *.pyc
+.idea/
 
 # Archivos de base de datos SQLite
 db.sqlite3
@@ -14,7 +15,7 @@ db.sqlite3
 *.log
 *.env
 
-# Ignorar toda la carpeta media
+# Ignorar toda la carpeta
 src/tmsoftware/media/
 src/kivy_app/.buildozer/
 src/kivy_app/buildozer.spec
