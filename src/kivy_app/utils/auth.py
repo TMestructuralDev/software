@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "http://127.0.0.1:8000/api/auth/token/login/"
+BASE_URL = "http://192.168.100.7:8000/api/auth/token/login/"
 
 def login_user(username, password):
     """Envía las credenciales al backend y devuelve el token si es válido."""

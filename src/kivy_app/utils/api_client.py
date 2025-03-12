@@ -4,7 +4,7 @@ class ApiClient:
     @staticmethod
     def enviar_datos_cliente(datos):
         """Envía los datos del formulario al backend de Django."""
-        url = "http://127.0.0.1:8000/api/notas_gruas/"  # URL de tu API en Django
+        url = "http://192.168.100.7:8000/api/notas_gruas/"  # URL de tu API en Django
         try:
             response = requests.post(url, json=datos)
             if response.status_code == 201:  # Si se creó correctamente
