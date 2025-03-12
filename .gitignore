@@ -7,6 +7,7 @@ deploy/
 __pycache__/
 *.pyc
 .idea/
+get-pip.py
 
 # Archivos de base de datos SQLite
 db.sqlite3
@@ -23,3 +24,6 @@ src/kivy_app/android-sdk.zip
 src/kivy_app/bin
 src/kivy_app/.python-version
 src/kivy_app/.gradle
+src/kivy_app/dist
+src/kivy_app/main.spec
+src/kivy_app/build/
