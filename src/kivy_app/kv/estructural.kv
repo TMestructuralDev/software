@@ -1,37 +1,78 @@
 
 <EstructuralScreen>:
-
     MDBoxLayout:
         orientation: "vertical"
-        adaptive_height: True
         size_hint: 1, 1
+        adaptive_height: False
         height: Window.height
-
-        canvas.before:
-            Color:
-                rgba: 50/255, 50/255, 50/255, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
+        md_bg_color: 1, 0, 0, 0.1  # Color de depuración (rojo claro)
         
         MDBoxLayout:
-            orientation: "vertical"
-            size_hint: 1, 1
+            orientation: 'horizontal'
+            size_hint: 1, .10
             padding: "10dp"
-            shadow_color: [0, 0, 0, 0.6]
-            pos_hint: {"center_x": 0.5}
-        
-            MDLabel:
-                text: "Pantalla Estructural"
-                halign: "center"
-                size_hint: 1, .5
+            md_bg_color: 0, 1, 0, 0.1  # Verde claro para depuración
 
-            MDRaisedButton:
-                text: "Volver"
-                size_hint: 1, .5
-                md_bg_color: 247/255, 53/255, 15/255, 1
-                shadow_color: [0, 0, 0, 0.6]
-                text_color: 1, 1, 1, 1
-                font_style: "Button"
-                ripple: True
-                on_release: app.root.current = "home_screen"
+            MDTextField:
+                id: nombre_articulo
+                hint_text: "Nombre del artículo"
+                size_hint_x: .45
+                mode: "rectangle"
+
+            MDTextField:
+                id: descripcion_articulo
+                hint_text: "Descripción"
+                size_hint_x: .45
+                mode: "rectangle"
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint_x: .10
+                pos_hint: {"center_y": 0.5}
+
+                MDIconButton:
+                    icon: "minus"
+                    size_hint: .33, 1
+                    on_release: root.cambiar_cantidad(-1)
+
+                MDLabel:
+                    id: cantidad_label
+                    text: "0"
+                    size_hint: .33, 1
+                    halign: "center"
+
+                MDIconButton:
+                    icon: "plus"
+                    size_hint: .33, 1
+                    on_release: root.cambiar_cantidad(1)
+
+        MDRaisedButton:
+            text: "Agregar"
+            size_hint: 1, .05
+            md_bg_color: 247/255, 53/255, 15/255, 1
+            shadow_color: [0, 0, 0, 0.6]
+            text_color: 1, 1, 1, 1  
+            font_style: "Button"
+            spacing: "10dp"
+            padding: "10dp"
+            on_release: root.agregar_articulo()
+
+    
+
+        MDScrollView:
+            size_hint: 1, .8  # Hace que ocupe todo el espacio disponible
+            do_scroll_x: False
+            do_scroll_y: True
+            MDList:
+                id: lista_pedidos
+
+        MDRaisedButton:
+            text: "Enviar Pedido"
+            spacing: "10dp"
+            padding: "10dp"
+            size_hint: 1, .05
+            md_bg_color: 247/255, 53/255, 15/255, 1
+            shadow_color: [0, 0, 0, 0.6]
+            text_color: 1, 1, 1, 1  
+            font_style: "Button"
+            on_release: root.enviar_pedido()
