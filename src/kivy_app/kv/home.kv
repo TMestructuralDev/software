@@ -1,30 +1,33 @@
 
 <HomeScreen>:
+    md_bg_color: 50/255, 50/255, 50/255, 1
 
     MDBoxLayout:
         orientation: "vertical"
-        padding: 10
-        canvas.before:
-            Color:
-                rgba: 50/255, 50/255, 50/255, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size 
+        padding: 20
 
-        MDRaisedButton:
-            text: "Estructural"
-            font_style: "Button"
-            font_size: "64sp"
-            bold: True
-            shadow_color: [0, 0, 0, 0.6]
-            size_hint_x: 1 
-            size_hint_y: 1  
+        MDCard:
+            style: "elevated"
+            size_hint: 1, .33 
             pos_hint: {"center_x": 0.5}
-            height: "50dp"  
+            theme_shadow_color: "Custom"
+            shadow_color: [0, 0, 0, 0.6]
+            theme_bg_color: "Custom"  
             md_bg_color: 247/255, 53/255, 15/255, 1
-            text_color: 220/255, 220/255, 220/255, 1
             ripple: True 
             on_release: root.go_to_estructural()
+
+            MDRelativeLayout:
+
+                MDLabel:
+                    text: "ALMACEN"
+                    adaptive_size: True
+                    theme_font_size: "Custom"
+                    font_size: max(self.width * 0.1, 40)
+                    color: 1, 1, 1, 1
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    bold: True
+
 
         Image:
             source: "media/logo_empresa.png"  
@@ -32,18 +35,25 @@
             size: "200dp", "200dp"  
             pos_hint: {"center_x": 0.5} 
 
-        MDRaisedButton:
-            text: "Grúas"
-            font_style: "Button"
-            font_size: "64sp"
-            bold: True
-            shadow_color: [0, 0, 0, 0.6]
-            size_hint_x: 1 
-            size_hint_y: 1  
+        MDCard:
+            style: "elevated"
+            size_hint: 1, .33 
             pos_hint: {"center_x": 0.5}
-            height: "50dp" 
+            theme_shadow_color: "Custom"
+            shadow_color: [0, 0, 0, 0.6]
+            theme_bg_color: "Custom"  
             md_bg_color: 247/255, 53/255, 15/255, 1
-            text_color: 220/255, 220/255, 220/255, 1 
-            ripple: True 
+            ripple: True  
             on_release: root.go_to_nota_gruas()
+
+            MDRelativeLayout:
+
+                MDLabel:
+                    text: "GRUAS"
+                    adaptive_size: True
+                    theme_font_size: "Custom"
+                    font_size: max(self.width * 0.1, 40)
+                    color: 1, 1, 1, 1
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    bold: True
 

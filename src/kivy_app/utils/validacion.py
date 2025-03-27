@@ -30,8 +30,8 @@ class ValidacionFormulario(BoxLayout):
             return "El teléfono debe contener 10 dígitos numéricos."
 
         # Validar que la fecha tenga el formato correcto (YYYY-MM-DD)
-        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", datos["fecha"]):
-            return "La fecha debe estar en formato YYYY-MM-DD."
+        if not re.fullmatch(r"\d{2}-\d{2}-\d{4}", datos["fecha"]):
+            return "La fecha debe estar en formato DD-MM-YYYY."
 
         # Validar que las horas tengan el formato correcto (HH:MM)
         for campo_hora in ["hora_salida", "hora_llegada", "hora_termino", "hora_regreso"]:

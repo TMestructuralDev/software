@@ -1,6 +1,6 @@
 from kivymd.uix.screen import MDScreen
 from utils.auth import login_user
-from kivymd.toast import toast
+from kivymd.uix.snackbar import MDSnackbar
 
 
 
@@ -10,7 +10,7 @@ class LoginScreen(MDScreen):
         password = self.ids.password.text
         
         if not username or not password:
-            toast("Por favor ingrese usuario y contraseña")
+            MDSnackbar("Por favor ingrese usuario y contraseña")
             return
 
         response = login_user(username, password)
@@ -19,4 +19,4 @@ class LoginScreen(MDScreen):
             self.manager.get_screen("home_screen").token = response["token"]
             self.manager.current = "home_screen"
         else:
-            toast("Error en login, verifique sus credenciales")
+            MDSnackbar("Error en login, verifique sus credenciales")

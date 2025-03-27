@@ -1,28 +1,44 @@
 <LoginScreen>:
-    name: "login"
+    md_bg_color: 50/255, 50/255, 50/255, 1
     
-    MDBoxLayout:
-        orientation: "vertical"
-        spacing: dp(20)
-        padding: dp(40)
-        pos_hint: {"center_y": 0.5}
-        
-        MDTextField:
-            id: username
-            hint_text: "Usuario"
-            icon_right: "account"
-            size_hint_x: 0.8
-            pos_hint: {"center_x": 0.5}
-        
-        MDTextField:
-            id: password
-            hint_text: "Contraseña"
-            icon_right: "eye-off"
-            password: True
-            size_hint_x: 0.8
-            pos_hint: {"center_x": 0.5}
+    MDFloatLayout:
 
-        MDRaisedButton:
-            text: "Iniciar Sesión"
-            pos_hint: {"center_x": 0.5}
-            on_release: root.login()
+        MDCard:
+            size_hint: None, None
+            size: 300, 400
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: "20dp"
+            spacing: "20dp"
+            orientation: 'vertical'
+
+            MDLabel:
+                text: "INGRESO"
+                color: 1, 1, 1, 1
+                font_size: 40
+                halign: "center"
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: "10dp"
+
+        
+            MDTextField:
+                id: username
+                hint_text: "Usuario"
+                icon_right: "account"
+                size_hint_x: 0.8
+                pos_hint: {"center_x": 0.5}
+            
+            MDTextField:
+                id: password
+                hint_text: "Contraseña"
+                icon_right: "eye-off"
+                password: True
+                size_hint_x: 0.8
+                pos_hint: {"center_x": 0.5}
+
+            MDButton:
+                text: "Iniciar Sesión"
+                style: "elevated"
+                pos_hint: {"center_x": 0.5}
+                on_release: root.login()

@@ -1,23 +1,23 @@
 <TextFieldPersonalizado@MDTextField>:
     size_hint: 1, None
-    mode: "rectangle"
+    mode: "outlined"
     theme_text_color: "Custom"
-    hint_text_color_normal: 1, 1, 1, 1  
-    hint_text_color_focus: 247/255, 53/255, 15/255, 1  
-    text_color: 1, 1, 1, 1  # Color del texto ingresado
+    theme_line_color: "Custom"
+    # 
+    text_color_normal: 1, 1, 1, 1 
+    text_color_focus: 247/255, 53/255, 15/255, 1 
+    #
     line_color_focus: 247/255, 53/255, 15/255, 1  
-    line_color_normal: 1, 1, 1, 1  
-    text_color_normal: 247/255, 53/255, 15/255, 1  
-    theme_text_color: "Custom"
-    width: min(400, Window.width * 0.9)
-
+    line_color_normal: 0.8, 0.8, 0.8, 1
+    #   
 
 <NotaGruasScreen>:
+    md_bg_color: 50/255, 50/255, 50/255, 1
+
     MDBoxLayout:
         orientation: "vertical"
         adaptive_height: True
         size_hint: 1, 1
-        height: Window.height
 
         canvas.before:
             Color:
@@ -31,6 +31,7 @@
             orientation: "horizontal"
             size_hint: 1, .10
             padding: "10dp"
+            spacing: "10dp"
             pos_hint: {"center_x": 0.6}
 
             MDLabel:
@@ -39,7 +40,7 @@
                 size_hint: .5, None
                 theme_text_color: "Custom"
                 text_color: 1, 1, 1, 1  
-                font_style: "H3"
+                font_style: "Display"
                 pos_hint: {"center_y": 0.5} 
             
             Image:
@@ -54,146 +55,199 @@
             orientation: "vertical"
             size_hint: 1, .10  
             padding: "10dp"
+            spacing: "10dp"
             shadow_color: [0, 0, 0, 0.6]
-            pos_hint: {"center_x": 0.5}
 
-            MDRaisedButton:
-                text: "Volver"
+            MDButton:
+                style: "elevated"
                 size_hint: 1, None
+                theme_bg_color: "Custom"
+                theme_shadow_color: "Custom"
                 md_bg_color: 247/255, 53/255, 15/255, 1
-                shadow_color: [0, 0, 0, 0.6]
-                text_color: 1, 1, 1, 1
-                font_style: "Button"
-                ripple: True
                 on_release: app.root.current = "home_screen"
 
-        MDScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
-            size_hint: 1, None 
-            height: Window.height * 0.5
-
-            MDGridLayout:
-                cols: 1
-                spacing: "10dp"
-                size_hint_y: None
-                height: self.minimum_height 
-                padding: "10dp"
-
-                TextFieldPersonalizado:
-                    id: cliente
-                    hint_text: "Cliente"
-                    size_hint_y: None
-                    height: 40
-
-                TextFieldPersonalizado:
-                    id: telefono
-                    hint_text: "Teléfono"
-                    size_hint_y: None
-                    height: 40
-
-                TextFieldPersonalizado:
-                    id: fecha
-                    hint_text: "Fecha"
-                    size_hint_y: None
-                    height: 40
-                    on_focus: root.show_date_picker(self) if self.focus else None
-                    text: root.fecha
-
-                TextFieldPersonalizado:
-                    id: empresa
-                    hint_text: "Empresa"
-                    size_hint_y: None
-                    height: 40
-
-                TextFieldPersonalizado:
-                    id: ubicacion
-                    hint_text: "Ubicación"
-                    size_hint_y: None
-                    height: 40
-
-                TextFieldPersonalizado:
-                    id: equipo
-                    hint_text: "Equipo"
-                    size_hint_y: None
-                    height: 40
-
-                TextFieldPersonalizado:
-                    id: operador
-                    hint_text: "Operador"
-                    size_hint_y: None
-                    height: 40
-
-                TextFieldPersonalizado:
-                    id: ayudante
-                    hint_text: "Ayudante"
-                    size_hint_y: None
-                    height: 40
-
-                TextFieldPersonalizado:
-                    id: trabajo_realizado
-                    hint_text: "Trabajo Realizado"
-                    size_hint_y: None
-                    height: 40
-
-                TextFieldPersonalizado:
-                    id: hora_salida
-                    hint_text: "Hora de Salida"
-                    size_hint_y: None
-                    height: 40
-                    on_focus: if self.focus: root.show_time_picker(self)
-                    text: root.hora_salida
-
-                TextFieldPersonalizado:
-                    id: hora_llegada
-                    hint_text: "Hora de Llegada"
-                    size_hint_y: None
-                    height: 40
-                    on_focus: if self.focus: root.show_time_picker(self)
-                    text: root.hora_llegada
-
-                TextFieldPersonalizado:
-                    id: hora_termino
-                    hint_text: "Hora de Termino"
-                    size_hint_y: None
-                    height: 40
-                    on_focus: if self.focus: root.show_time_picker(self)
-                    text: root.hora_termino
-
-                TextFieldPersonalizado:
-                    id: hora_regreso
-                    hint_text: "Hora de Regreso"
-                    size_hint_y: None
-                    height: 40
-                    on_focus: if self.focus: root.show_time_picker(self)
-                    text: root.hora_regreso
-
-                TextFieldPersonalizado:
-                    id: costo_hora
-                    hint_text: "Costo por Hora"
-                    size_hint_y: None
-                    height: 40
+                MDButtonText:
+                    text: "Volver"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1  
+                    font_style: "Display"
+                    theme_font_size: "Custom"
+                    font_size: "24sp"
 
         MDBoxLayout:
             orientation: "vertical"
-            size_hint: 1, .10 
-            pos_hint: {"center_x": 0.5}
+            size_hint: 1, .65 
+            padding: "10dp"
+            spacing: "10dp"
+            shadow_color: [0, 0, 0, 0.6]
+
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, 1
+                #height: Window.height * 0.5
+
+                MDGridLayout:
+                    cols: 1
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: self.minimum_height 
+                    padding: "10dp"
+
+                    TextFieldPersonalizado:
+                        id: cliente
+                        MDTextFieldHintText:
+                            text: "Cliente"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1  
+
+                    TextFieldPersonalizado:
+                        id: telefono
+                        MDTextFieldHintText:
+                            text: "Telefono" 
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+                        MDTextFieldTrailingIcon:
+                            icon: "phone"
+                            theme_icon_color: "Custom"
+                            icon_color_normal: 247/255, 53/255, 15/255, 1 
+
+                    TextFieldPersonalizado:
+                        id: fecha
+                        text: root.fecha
+                        on_focus: root.open_date_picker(self) if self.focus else None
+                        MDTextFieldHintText:
+                            text: "Fecha"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+                        
+
+                    TextFieldPersonalizado:
+                        id: empresa
+                        MDTextFieldHintText:
+                            text: "Empresa"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+
+                    TextFieldPersonalizado:
+                        id: ubicacion
+                        MDTextFieldHintText:
+                            text: "Ubicacion"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+
+                    TextFieldPersonalizado:
+                        id: equipo
+                        MDTextFieldHintText:
+                            text: "Equipo"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+
+                    TextFieldPersonalizado:
+                        id: operador
+                        MDTextFieldHintText:
+                            text: "Operador"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+
+                    TextFieldPersonalizado:
+                        id: ayudante
+                        MDTextFieldHintText:
+                            text: "Ayudante"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+
+                    TextFieldPersonalizado:
+                        id: trabajo_realizado
+                        MDTextFieldHintText:
+                            text: "Trabajo Realizado"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+
+                    TextFieldPersonalizado:
+                        id: hora_salida
+                        on_focus: if self.focus: root.open_time_picker(self)
+                        text: root.hora_salida
+                        MDTextFieldHintText:
+                            text: "Hora de Salida"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+                        
+
+                    TextFieldPersonalizado:
+                        id: hora_llegada
+                        on_focus: if self.focus: root.open_time_picker(self)
+                        text: root.hora_llegada
+                        MDTextFieldHintText:
+                            text: "Hora de Llegada"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+                        
+
+                    TextFieldPersonalizado:
+                        id: hora_termino
+                        on_focus: if self.focus: root.open_time_picker(self)
+                        text: root.hora_termino
+                        MDTextFieldHintText:
+                            text: "Hora de Termino"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+                        
+
+                    TextFieldPersonalizado:
+                        id: hora_regreso
+                        on_focus: if self.focus: root.open_time_picker(self)
+                        text: root.hora_regreso
+                        MDTextFieldHintText:
+                            text: "Hora de Regreso"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+                        
+
+                    TextFieldPersonalizado:
+                        id: costo_hora
+                        MDTextFieldHintText:
+                            text: "Costo por Hora"
+                            text_color_normal: 1, 1, 1, 1  
+                            text_color_focus: 247/255, 53/255, 15/255, 1 
+
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint: 1, .05 
+            padding: "10dp"
+            spacing: "10dp"
+            md_bg_color: 50/255, 50/255, 50/255, 1
+            shadow_color: [0, 0, 0, 0.6]
 
             MDLabel:
                 id: error
                 text: ""
-                halign: "center"
-                size_hint: 1, .5
-                theme_text_color: "Custom"
+                size_hint: 1, 1
+                halign: "center" 
+                valing: "center"             
+                text_color: 1, 0, 0, 1
                 text_size: self.width, None
                 markup: True
 
-        MDRaisedButton:
-            text: "Enviar Nota"
-            size_hint: 1, .10
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint: 1, .10  
             padding: "10dp"
-            md_bg_color: 247/255, 53/255, 15/255, 1
+            spacing: "10dp"
             shadow_color: [0, 0, 0, 0.6]
-            text_color: 1, 1, 1, 1  
-            font_style: "Button"
-            on_release: root.enviar_datos()
+
+            MDButton:
+                style: "elevated"
+                size_hint: 1, None
+                theme_bg_color: "Custom"
+                theme_shadow_color: "Custom"
+                md_bg_color: 247/255, 53/255, 15/255, 1
+                on_release: root.enviar_datos()
+
+                MDButtonText:
+                    text: "Enviar Nota"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1  
+                    font_style: "Display"
+                    theme_font_size: "Custom"
+                    font_size: "24sp"

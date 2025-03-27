@@ -28,17 +28,17 @@ class NotaGruasScreen(MDScreen):
         self.time_picker = TimePicker()
         self.validacion_formulario = ValidacionFormulario()
 
-    def show_date_picker(self, field):
+    def open_date_picker(self, caller):
         """Llama al DatePicker y pasa el campo de texto que lo activó."""
-        self.date_picker.show_date_picker(field)
+        self.date_picker.show_date_picker(caller)
         
-    def show_time_picker(self, field):
+    def open_time_picker(self, caller):
         """Llama al DatePicker y pasa el campo de texto que lo activó."""
-        self.time_picker.show_time_picker(field)
+        self.time_picker.show_time_picker(caller)
         
     def enviar_datos(self):
         """Recopila todos los datos desde el formulario y los envía al backend."""
-        self.validacion_formulario .enviar_datos() # Llamamos a la función enviar_datos()
+        self.validacion_formulario.enviar_datos() # Llamamos a la función enviar_datos()
 
     def enviar_datos(self):
         """Recopila todos los datos desde el formulario y los envía al backend."""

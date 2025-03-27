@@ -1,78 +1,162 @@
+<TextFieldPersonalizado@MDTextField>:
+    size_hint: 1, None
+    mode: "outlined"
+    theme_text_color: "Custom"
+    hint_text_color_normal: 1, 1, 1, 1  
+    hint_text_color_focus: 247/255, 53/255, 15/255, 1  
+    text_color: 1, 1, 1, 1  # Color del texto ingresado
+    line_color_focus: 247/255, 53/255, 15/255, 1  
+    line_color_normal: 1, 1, 1, 1  
+    text_color_normal: 247/255, 53/255, 15/255, 1  
+    theme_text_color: "Custom"
+    width: "400dp"
+
+
 
 <EstructuralScreen>:
+    md_bg_color: 50/255, 50/255, 50/255, 1
+
     MDBoxLayout:
         orientation: "vertical"
-        size_hint: 1, 1
-        adaptive_height: False
-        height: Window.height
-        md_bg_color: 1, 0, 0, 0.1  # Color de depuración (rojo claro)
         
-        MDBoxLayout:
-            orientation: 'horizontal'
-            size_hint: 1, .10
-            padding: "10dp"
-            md_bg_color: 0, 1, 0, 0.1  # Verde claro para depuración
+########
+        MDExpansionPanel:
+            pos_hint: {"center_x": .5, "center_y": .5}
 
-            MDTextField:
-                id: nombre_articulo
-                hint_text: "Nombre del artículo"
-                size_hint_x: .45
-                mode: "rectangle"
+            MDExpansionPanelHeader:
 
-            MDTextField:
-                id: descripcion_articulo
-                hint_text: "Descripción"
-                size_hint_x: .45
-                mode: "rectangle"
+                MDListItem:
+                    theme_bg_color: "Custom"
+                    md_bg_color: self.theme_cls.surfaceContainerLowColor
+                    ripple_effect: False
 
-            MDBoxLayout:
-                orientation: 'horizontal'
-                size_hint_x: .10
-                pos_hint: {"center_y": 0.5}
+                    MDListItemSupportingText:
+                        text: "Detalles de la estructura"
 
-                MDIconButton:
-                    icon: "minus"
-                    size_hint: .33, 1
-                    on_release: root.cambiar_cantidad(-1)
+            MDExpansionPanelContent:
+                orientation: "vertical"
+                padding: "12dp", 0, "12dp", 0
 
-                MDLabel:
-                    id: cantidad_label
-                    text: "0"
-                    size_hint: .33, 1
-                    halign: "center"
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, .4
+                md_bg_color: 1, 4, 2, 0.1 
 
-                MDIconButton:
-                    icon: "plus"
-                    size_hint: .33, 1
-                    on_release: root.cambiar_cantidad(1)
+                MDGridLayout:   # segmento de prueba para visualizar el contenedor, inicio
+                    cols: 1
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: self.minimum_height 
+                    padding: "10dp"
 
-        MDRaisedButton:
+                    MDGridLayout:
+                        cols: 1
+                        spacing: "10dp"
+                        size_hint_y: None
+                        height: self.minimum_height 
+                        padding: "10dp"
+
+                        TextFieldPersonalizado:
+                            id: solicitante
+                            hint_text: "Solicitante"
+                            size_hint_x: .45
+
+                        TextFieldPersonalizado:
+                            id: area
+                            hint_text: "Area"
+                            size_hint_x: .45
+
+                        TextFieldPersonalizado:
+                            id: cargo
+                            hint_text: "Cargo o Puesto"
+                            size_hint_x: .45
+
+                        TextFieldPersonalizado:
+                            id: fecha
+                            hint_text: "Fecha"
+                            size_hint_y: None
+                            height: 40
+                            on_focus: root.open_date_picker(self) if self.focus else None
+                            text: root.fecha
+
+                        TextFieldPersonalizado:
+                            id: articulo
+                            hint_text: "Articulo"
+                            size_hint_x: .45
+
+                        TextFieldPersonalizado:
+                            id: cantidad
+                            hint_text: "Cantidad"
+                            size_hint_x: .45
+
+                        TextFieldPersonalizado:
+                            id: medida
+                            hint_text: "Unidad de Medida"
+                            size_hint_x: .45
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_x: .10
+                        pos_hint: {"center_y": 0.5}
+
+                        MDIconButton:
+                            icon: "minus"
+                            size_hint: .33, 1
+                            on_release: root.cambiar_cantidad(-1)
+
+                        MDLabel:
+                            id: cantidad_label
+                            text: "0"
+                            size_hint: .33, 1
+                            halign: "center"
+
+                        MDIconButton:
+                            icon: "plus"
+                            size_hint: .33, 1
+                            on_release: root.cambiar_cantidad(1)
+########
+        MDButton:
             text: "Agregar"
+            style: "elevated"
             size_hint: 1, .05
+            theme_bg_color: "Custom"
+            theme_shadow_color: "Custom"
             md_bg_color: 247/255, 53/255, 15/255, 1
             shadow_color: [0, 0, 0, 0.6]
             text_color: 1, 1, 1, 1  
             font_style: "Button"
-            spacing: "10dp"
-            padding: "10dp"
             on_release: root.agregar_articulo()
-
-    
-
+########
         MDScrollView:
-            size_hint: 1, .8  # Hace que ocupe todo el espacio disponible
+            size_hint: 1, .4  # Hace que ocupe todo el espacio disponible
             do_scroll_x: False
             do_scroll_y: True
-            MDList:
-                id: lista_pedidos
 
-        MDRaisedButton:
+            MDGridLayout:   # segmento de prueba para visualizar el contenedor, inicio
+                cols: 1
+                spacing: "10dp"
+                size_hint_y: None
+                height: self.minimum_height 
+                padding: "10dp"
+
+                TextFieldPersonalizado:
+                    id: cliente
+                    hint_text: "Cliente"
+                    size_hint_y: None
+                    height: 40
+
+                MDList:
+                    id: lista_pedidos # segmento de prueba, final
+########
+        MDButton:
             text: "Enviar Pedido"
-            spacing: "10dp"
-            padding: "10dp"
+            style: "elevated"
             size_hint: 1, .05
+            theme_bg_color: "Custom"
+            theme_shadow_color: "Custom"
             md_bg_color: 247/255, 53/255, 15/255, 1
-            shadow_color: [0, 0, 0, 0.6]
+            shadow_color: [0, 0, 0, 0]
             text_color: 1, 1, 1, 1  
             font_style: "Button"
             on_release: root.enviar_pedido()
