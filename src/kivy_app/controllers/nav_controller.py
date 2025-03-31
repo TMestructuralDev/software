@@ -13,5 +13,5 @@ class NavigationController(ScreenManager):
         self.add_widget(LoginScreen(name="login_screen"))
 
 
-        self.current = "login_screen"  # <- IMPORTANTE: Esto asegura que se muestre MainScreen.
-        #self.current = "home_screen"  # <- IMPORTANTE: Pantalla para testeo.
+        #self.current = "login_screen"  # <- IMPORTANTE: Esto asegura que se muestre MainScreen.
+        self.current = "home_screen"  # <- IMPORTANTE: Pantalla para testeo.

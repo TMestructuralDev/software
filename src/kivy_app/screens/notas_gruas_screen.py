@@ -84,13 +84,16 @@ class NotaGruasScreen(MDScreen):
         datos["total_con_iva"] = total_con_iva
 
         # Validar datos antes de enviarlos
+        #print("Datos antes de enviar:", datos)
         mensaje_error = self.validacion_formulario.enviar_datos(datos)
+        
         if mensaje_error:
             self.ids.error.text = f"[color=ff0000]{mensaje_error}[/color]"
-        else:
-            self.ids.error.text = "[color=00ff00]Datos enviados correctamente[/color]"
-            
-            
+            return
+        
+        
+        self.ids.error.text = "[color=00ff00]Datos enviados correctamente[/color]"
+    
         # Limpiar el formulario
         self.limpiar_formulario()
 

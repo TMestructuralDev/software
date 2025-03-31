@@ -12,14 +12,11 @@
             spacing: "20dp"
             orientation: 'vertical'
 
-            MDLabel:
-                text: "INGRESO"
-                color: 1, 1, 1, 1
-                font_size: 40
-                halign: "center"
-                size_hint_y: None
-                height: self.texture_size[1]
-                padding: "10dp"
+            Image:
+                source: "media/logo_empresa.png"  
+                size_hint: None, None
+                size: "200dp", "200dp"  
+                pos_hint: {"center_x": 0.5} 
 
         
             MDTextField:
@@ -38,7 +35,14 @@
                 pos_hint: {"center_x": 0.5}
 
             MDButton:
-                text: "Iniciar Sesión"
                 style: "elevated"
                 pos_hint: {"center_x": 0.5}
                 on_release: root.login()
+
+                MDButtonText:
+                    text: "INGRESAR"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1  
+                    font_style: "Display"
+                    theme_font_size: "Custom"
+                    font_size: "24sp"
