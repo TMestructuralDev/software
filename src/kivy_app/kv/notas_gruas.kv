@@ -166,7 +166,7 @@
 
                     TextFieldPersonalizado:
                         id: hora_salida
-                        on_focus: if self.focus: root.show_time_picker(self)
+                        on_focus: if self.focus: root.open_time_picker(self)
                         text: root.hora_salida
                         MDTextFieldHintText:
                             text: "Hora de Salida"
